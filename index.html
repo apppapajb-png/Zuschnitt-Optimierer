@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zuschnitt Optimierer V3.1</title>
+<meta name="theme-color" content="#17202a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Zuschnitt"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17202a;background:#eef1f4}*{box-sizing:border-box}body{margin:0}.top{background:#17202a;color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:3}.top h1{font-size:22px;margin:0 0 12px}.tabs{display:flex;gap:8px}.tabs button{flex:1;border:0;border-radius:10px;padding:11px;font-weight:700;background:#34495e;color:#fff}.tabs button.active{background:#fff;color:#17202a}.tabIcon{display:inline-flex;vertical-align:middle;margin-right:7px}.tabIcon svg{width:25px;height:25px;display:block}.wrap{max-width:900px;margin:auto;padding:14px}.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px #0001}.card h2{font-size:17px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.grid3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}label{font-size:12px;font-weight:700;color:#566573}input,select{width:100%;font-size:16px;padding:10px;border:1px solid #ccd1d1;border-radius:9px;margin-top:4px;background:#fff}button{cursor:pointer}.primary{width:100%;border:0;border-radius:11px;background:#17202a;color:#fff;font-weight:800;padding:13px;font-size:16px}.secondary{border:1px solid #abb2b9;background:#fff;border-radius:9px;padding:9px 12px}.danger{border:0;background:#f5b7b1;border-radius:8px;padding:8px}.row{display:grid;grid-template-columns:.48fr 1.45fr .9fr .9fr .9fr .55fr auto;gap:6px;align-items:end;margin:7px 0}.row input,.row select{font-size:14px;padding:8px}.summary{font-weight:700;line-height:1.55}.sheet{background:#fdfefe;border:2px solid #566573;position:relative;margin:12px 0;overflow:hidden;min-height:100px}.piece{position:absolute;border:1px solid #17202a;background:#d6eaf8;overflow:hidden;font-size:10px;padding:2px}.bar{height:54px;border:2px solid #566573;position:relative;background:#fdfefe;margin:10px 0}.seg{height:100%;position:absolute;top:0;border-right:2px solid #fff;background:#d6eaf8;font-size:10px;overflow:hidden;padding:4px}.muted{color:#7b7d7d;font-size:13px}.hidden{display:none}@media(max-width:650px){
+  .top{padding:max(12px,env(safe-area-inset-top)) 10px 10px}.top h1{font-size:20px;margin-bottom:9px}.tabs{gap:6px}.tabs button{padding:10px 6px;font-size:14px}
+  .wrap{padding:8px;max-width:100%}.card{padding:11px;margin-bottom:9px;border-radius:12px}.card h2{font-size:16px;margin-bottom:9px}
+  .grid{grid-template-columns:1fr 1fr;gap:7px}label{font-size:11px}input,select{font-size:16px;padding:10px 8px;min-height:44px}.primary{min-height:48px;font-size:16px}.secondary{min-height:44px;width:100%;font-size:15px}.danger{min-width:44px;min-height:44px;font-size:20px}
+  .row{grid-template-columns:1fr 1fr;gap:6px;padding:9px 0;border-bottom:1px solid #e5e7e9;align-items:center}.row input,.row select{font-size:16px;padding:9px 8px;min-width:0}.row .danger{grid-column:2;justify-self:end;width:44px}
+  #pRows .row input:nth-child(1){grid-column:1}#pRows .row input:nth-child(2){grid-column:2}#pRows .row input:nth-child(3){grid-column:1}#pRows .row input:nth-child(4){grid-column:2}#pRows .row select{grid-column:1}#pRows .row input:nth-child(6){grid-column:2}
+  #pStock .row,#bStock .row,#bRows .row{grid-template-columns:1fr 1fr!important}#pStock .row input:nth-child(1),#bStock .row input:nth-child(1),#bRows .row input:nth-child(1){grid-column:1/-1}
+  .sheet{max-width:100%;min-height:70px}.piece{font-size:9px;padding:1px;line-height:1.1}.bar{height:62px}.seg{font-size:9px;padding:3px}.summary{font-size:14px}.muted{font-size:12px;line-height:1.35}
+  .grid3{grid-template-columns:1fr 1fr}.grid3>div:first-child{grid-column:1/-1}
+}
+@media(max-width:420px){.top h1{font-size:19px}.grid{gap:6px}.card{padding:10px}.piece{font-size:8px}.tabs button{font-size:13px}.summary{font-size:13px}}
+@media(max-width:420px) and (orientation:landscape){.top{position:relative}.wrap{padding:6px}.sheet{min-height:120px}}
+@media(orientation:landscape) and (max-height:500px){.top{position:relative;padding:8px 10px}.top h1{font-size:17px;margin-bottom:6px}.tabs button{padding:8px}.wrap{max-width:980px}.card{padding:9px}.sheet{max-height:70vh}}
+
+/* Kompakter Rohplattenbereich: vierstellige Maße brauchen keine halbe Bildschirmbreite. */
+.compactTop{grid-template-columns:140px 140px 92px 112px auto;align-items:end;justify-content:start}
+.compactTop input{width:100%}
+.compactTop label:last-child{min-width:76px}
+.compactVoice{width:auto;min-width:118px;padding-left:12px;padding-right:12px}
+.bvCard{padding:10px 14px}.bvField{display:grid;grid-template-columns:145px minmax(0,1fr);gap:10px;align-items:center}.bvField label{font-size:14px}.bvField input{margin-top:0;font-weight:700}.barTop{grid-template-columns:160px 92px;justify-content:start}.barTop input{width:100%}.barRow{grid-template-columns:minmax(150px,1.8fr) 120px 76px auto!important;max-width:620px}.barStockRow{grid-template-columns:minmax(150px,1.8fr) 120px 76px auto!important;max-width:620px}
+@media(max-width:650px){
+  .bvCard{padding:9px 11px}.bvField{grid-template-columns:1fr;gap:4px}.bvField label{font-size:12px}.barTop{grid-template-columns:minmax(0,1fr) 86px}.barRow,.barStockRow{grid-template-columns:1fr 110px 72px 44px!important;max-width:none}.barRow input,.barStockRow input{min-width:0}
+  .compactTop{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 86px 104px;gap:7px}
+  .compactTop label:last-child{grid-column:1/-1}
+  .voiceActions>*{flex:0 0 auto!important}
+  .compactVoice{min-width:116px;width:auto;font-size:15px}
+}
+@media(max-width:390px){
+  .compactTop{grid-template-columns:1fr 1fr}
+  .compactTop label:nth-child(3),.compactTop label:nth-child(4){max-width:112px}
+  .compactTop label:last-child{grid-column:auto}
+}
+
+.voicebox{border:1px solid #ccd1d1;border-radius:12px;padding:10px;margin-bottom:10px;background:#f8f9f9}.voiceActions{display:flex;gap:8px;flex-wrap:wrap}.voiceBtn{border:0;border-radius:10px;background:#34495e;color:white;min-height:44px;padding:10px 14px;font-weight:800;font-size:15px}.voiceBtn.listening{background:#922b21}.voiceText{margin-top:8px;font-size:13px;line-height:1.4}.voicePreview{font-weight:700}.voiceHint{color:#626567}.voiceError{color:#922b21;font-weight:700}@media(max-width:650px){.voiceActions>*{flex:1 1 140px}.voiceBtn{font-size:16px}}
+
+/* V2.9: LED-Profil-Bezeichnung und Sprachknopf kompakter. */
+#bRows .barRow{grid-template-columns:58px 150px 120px 76px auto!important;max-width:565px}
+#bRows .barRow input:first-child{grid-column:auto}
+#barMode .compactVoice{min-width:98px;width:98px;padding-left:8px;padding-right:8px}
+@media(max-width:650px){
+  #bRows .barRow{grid-template-columns:58px minmax(105px,145px) 96px 64px 44px!important;max-width:100%;justify-content:start}
+  #bRows .barRow input:first-child{grid-column:auto!important}
+  #barMode .voiceActions>*{flex:0 0 auto!important}
+  #barMode .compactVoice{min-width:96px;width:96px;font-size:14px;padding:8px 6px}
+}
+@media(max-width:390px){
+  #bRows .barRow{grid-template-columns:52px minmax(88px,1fr) 84px 58px 44px!important}
+}
+
+/* V3.0 – Farbkonzept, Windows/iPhone und Druck/PDF */
+:root{--plate:#1479c9;--plate2:#eaf5ff;--barc:#ef8a12;--bar2:#fff3df;--go:#169c35;--result:#fff0ed;--ink:#17324a}
+body{background:linear-gradient(180deg,#edf5fb 0,#f6f7f8 260px);color:var(--ink)}
+.top{background:linear-gradient(105deg,#0869ad,#174d78);box-shadow:0 2px 12px #0002}
+.top h1{display:flex;align-items:center;gap:10px}.brandIcon{width:38px;height:38px;border-radius:9px;background:#fff;padding:3px;flex:0 0 auto}
+#tabPlate.active{background:var(--plate);color:#fff}#tabBar.active{background:var(--barc);color:#fff}
+#plateMode .card h2{color:#0e65a5}#barMode .card h2{color:#c96b00}
+#plateMode .card{border-top:3px solid #cfe9fb}#barMode .card{border-top:3px solid #ffe0ad}#plateMode .voicebox{background:#eef8ff;border-color:#b8dcf5}#barMode .voicebox{background:#fff6e8;border-color:#f5d39d}#plateMode .secondary{border-color:#8cc7ee;color:#0e65a5}#barMode .secondary{border-color:#efb65f;color:#a95800}
+#plateMode .primary{background:linear-gradient(#1db33e,#118c2e)}#barMode .primary{background:linear-gradient(#1db33e,#118c2e)}
+.voiceBtn{background:#1679c5}.bvCard{border-left:5px solid #294f6b}.summary{background:var(--result);border-radius:10px;padding:10px}.printBtn{width:100%;margin-top:10px;border:0;border-radius:11px;background:#334f66;color:white;font-weight:800;padding:12px;font-size:15px}.printOnly{display:none}.printTable{width:100%;border-collapse:collapse;margin:10px 0 16px}.printTable th,.printTable td{border:1px solid #aeb7bf;padding:5px 7px;text-align:left;font-size:12px}.printTable th{background:#edf1f4}.printMeta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;margin:8px 0 12px;font-size:13px}.resultTitle{display:flex;justify-content:space-between;gap:10px;align-items:center}.resultTitle small{font-weight:500;color:#657786}
+@media(min-width:900px){.wrap{max-width:1180px}.card{border:1px solid #dfe7ed}.sheet{max-width:980px}.top h1{font-size:24px}}
+@media(max-width:650px){.brandIcon{width:32px;height:32px}.top h1{font-size:19px}.printBtn{min-height:46px}.printMeta{grid-template-columns:1fr}}
+@media print{
+ body[data-printmode="plate"] #barMode{display:none!important} body[data-printmode="bar"] #plateMode{display:none!important}
+ @page{size:A4 portrait;margin:10mm} body{background:#fff!important;color:#000!important;font-family:Arial,sans-serif}.top,.bvCard,#plateMode>.card,#barMode>.card,.primary,.secondary,.voicebox,.danger,.printBtn{display:none!important}.wrap{max-width:none!important;padding:0!important;margin:0!important}.hidden{display:none!important}#plateMode,#barMode{display:block!important}#plateMode>.card[id],#barMode>.card[id],#pOut,#bOut{display:block!important;box-shadow:none!important;border:0!important;padding:0!important}.printOnly{display:block!important}.sheet{break-inside:avoid;border:1.5px solid #222!important;background:#fff!important}.piece{print-color-adjust:exact;-webkit-print-color-adjust:exact;background:#dbeeff!important}.bar{break-inside:avoid}.seg{print-color-adjust:exact;-webkit-print-color-adjust:exact;background:#dbeeff!important}.summary{border:1px solid #bbb;background:#f4f4f4!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}#pOut.hidden,#bOut.hidden{display:none!important}
+}
+</style></head>
+<body><div class="top"><h1><svg class="brandIcon" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="10" width="36" height="13" rx="2" fill="#d69b55"/><rect x="9" y="24" width="36" height="13" rx="2" fill="#e7b977"/><circle cx="39" cy="38" r="14" fill="#dfe6ec" stroke="#52616d" stroke-width="3"/><path d="M39 19v7M39 50v7M20 38h7M51 38h7M26 25l5 5M47 47l5 5M52 25l-5 5M31 47l-5 5" stroke="#52616d" stroke-width="3"/><circle cx="39" cy="38" r="4" fill="#52616d"/><path d="M46 48h14v8H46z" fill="#f2a51a"/><path d="M48 50h10" stroke="#fff" stroke-width="2"/></svg><span>Zuschnitt Optimierer V3.1</span></h1><div class="tabs"><button id="tabPlate" class="active"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="21" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v21M21 5v21M3 15h26" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M25 24l4 4M28 23l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Platten</button><button id="tabBar"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 11h26v10H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 16h18M9 13v6M23 13v6" stroke="currentColor" stroke-width="1.6"/><circle cx="27" cy="16" r="2" fill="currentColor"/></svg></span>LED / Schienen</button></div></div>
+<div class="wrap">
+<div class="card bvCard"><div class="bvField"><label for="bv">Bauvorhaben (BV)</label><input id="bv" type="text" placeholder="z. B. BV Küche Müller / 2026-014" autocomplete="off"></div></div>
+<section id="plateMode">
+<div class="card"><h2>Rohplatte</h2><div class="grid compactTop"><label>Länge mm<input id="pL" type="number" value="2800"></label><label>Breite mm<input id="pW" type="number" value="2100"></label><label>Schnittfuge mm<input id="pK" type="number" value="3.2" step="0.1"></label><label>Besäumschnitt je Kante mm<input id="pTrim" type="number" value="15" min="0" step="0.1"></label><label><span>Drehen</span><input id="pRot" type="checkbox" checked style="width:auto;margin:12px"></label></div><p class="muted" id="pNet">Netto-Nutzmaß: 2770 × 2070 mm</p></div>
+<div class="card"><h2>Teile</h2><div class="voicebox"><div class="voiceActions"><button type="button" class="voiceBtn compactVoice" id="voicePlate" title="Teil per Sprache eingeben" aria-label="Teil per Sprache eingeben">🎤 Sprache</button></div><div class="voiceText"><span class="voiceHint">Beispiel: „Seite, 720 mal 560, zwei Stück, Maserung längs.“</span><div id="voicePlateMsg" aria-live="polite"></div></div></div><p class="muted">Maserung: <b>Längs</b> = entlang der eingegebenen Länge, <b>Quer</b> = entlang der Breite, <b>Egal</b> = Teil darf frei gedreht werden.</p><div id="pRows"></div><button class="secondary" onclick="addP()">+ Teil hinzufügen</button></div><div class="card"><h2>Rest-/Bestandplatten</h2><p class="muted">Vorhandene Rest-/Bestandplatten werden zuerst verwendet.</p><div id="pStock"></div><button class="secondary" onclick="addPS()">+ Rest-/Bestandplatte hinzufügen</button></div>
+<button class="primary" onclick="optPlate()">Platten optimieren</button><div id="pOut" class="card hidden"></div><button id="pPrint" class="printBtn hidden" type="button" onclick="printMode('plate')">🖨️ Drucken / PDF</button>
+</section>
+<section id="barMode" class="hidden">
+<div class="card"><h2>Stange / Profil</h2><div class="grid barTop"><label>Stangenlänge mm<input id="bL" type="number" value="3000"></label><label>Schnittfuge mm<input id="bK" type="number" value="3.2" step="0.1"></label></div></div>
+<div class="card"><h2>Zuschnitte</h2><div class="voicebox"><div class="voiceActions"><button type="button" class="voiceBtn compactVoice" id="voiceBar" title="Zuschnitt per Sprache eingeben" aria-label="Zuschnitt per Sprache eingeben">🎤 Sprache</button></div><div class="voiceText"><span class="voiceHint">Beispiel: „LED Profil, 875 Millimeter, vier Stück.“</span><div id="voiceBarMsg" aria-live="polite"></div></div></div><div id="bRows"></div><button class="secondary" onclick="addB()">+ Zuschnitt hinzufügen</button></div><div class="card"><h2>Bestand / Reststangen</h2><p class="muted">Vorhandene Reststücke werden zuerst verwendet.</p><div id="bStock"></div><button class="secondary" onclick="addBS()">+ Reststange hinzufügen</button></div>
+<button class="primary" onclick="optBar()">Stangen optimieren</button><div id="bOut" class="card hidden"></div><button id="bPrint" class="printBtn hidden" type="button" onclick="printMode('bar')">🖨️ Drucken / PDF</button>
+</section></div>
+<script>
+const $=id=>document.getElementById(id);let pc=0,bc=0,pPos=1,bPos=1;
+function addP(n='',l='',w='',q=1,g='L',pos=''){let id=pc++,d=document.createElement('div');d.className='row';if(pos==='')pos=pPos++;d.innerHTML=`<input placeholder="Pos." value="${pos}" title="Positionsnummer"><input placeholder="Bezeichnung" value="${n}"><input type="number" placeholder="L mm" value="${l}"><input type="number" placeholder="B mm" value="${w}"><select title="Maserrichtung"><option value="L" ${g==='L'?'selected':''}>↔ Längs</option><option value="Q" ${g==='Q'?'selected':''}>↕ Quer</option><option value="E" ${g==='E'?'selected':''}>↔↕ Egal</option></select><input type="number" min="1" value="${q}"><button class="danger" onclick="this.parentElement.remove()">×</button>`;$('pRows').appendChild(d)}
+
+function addPS(n='Rest-/Bestandplatte',l='',w='',q=1){let d=document.createElement('div');d.className='row';d.style.gridTemplateColumns='1.5fr 1fr 1fr .65fr auto';d.innerHTML=`<input placeholder="Bezeichnung" value="${n}"><input type="number" placeholder="L mm" value="${l}"><input type="number" placeholder="B mm" value="${w}"><input type="number" min="1" value="${q}"><button class="danger" onclick="this.parentElement.remove()">×</button>`;$('pStock').appendChild(d)}
+function addBS(n='Rest',l='',q=1){let d=document.createElement('div');d.className='row barStockRow';d.innerHTML=`<input placeholder="Bezeichnung" value="${n}"><input type="number" placeholder="Länge mm" value="${l}"><input type="number" min="1" value="${q}"><button class="danger" onclick="this.parentElement.remove()">×</button>`;$('bStock').appendChild(d)}
+
+function addB(n='',l='',q=1,pos=''){let d=document.createElement('div');d.className='row barRow';if(pos==='')pos=bPos++;d.innerHTML=`<input placeholder="Pos." value="${pos}" title="Positionsnummer"><input placeholder="Bezeichnung" value="${n}"><input type="number" placeholder="Länge mm" value="${l}"><input type="number" min="1" value="${q}"><button class="danger" onclick="this.parentElement.remove()">×</button>`;$('bRows').appendChild(d)}
+addP('Seite',720,560,2);addP('Boden',800,500,3);addB('LED Profil',820,4);addB('LED Profil',1160,2);addB('LED Profil',430,6);
+function rows(sel){return [...document.querySelectorAll(sel+' .row')].map(r=>[...r.querySelectorAll('input,select')].map(x=>x.value))}
+function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function barListTable(){let rr=rows('#bRows'),body=rr.filter(r=>+r[2]>0&&+r[3]>0).map(r=>`<tr><td>${esc(r[0]||'')}</td><td>${esc(r[1]||'Zuschnitt')}</td><td>${esc(r[2])} mm</td><td>${esc(r[3])}</td></tr>`).join('');return `<div class="printOnly"><h1>Zuschnitt Optimierer – LED / Schienen</h1><div class="printMeta"><b>Bauvorhaben:</b><span>${esc($('bv').value||'—')}</span><b>Stangenlänge:</b><span>${esc($('bL').value)} mm</span><b>Schnittfuge:</b><span>${esc($('bK').value)} mm</span></div><h3>Maßliste</h3><table class="printTable"><thead><tr><th>Pos.Nr.</th><th>Bezeichnung</th><th>Länge</th><th>Stück</th></tr></thead><tbody>${body}</tbody></table></div>`}
+function optBar(){let L=+$('bL').value,k=+$('bK').value,items=[];rows('#bRows').forEach(r=>{for(let i=0;i<+r[3];i++)if(+r[2]>0)items.push({pos:r[0]||'',n:r[1]||'Teil',l:+r[2]})});items.sort((a,b)=>b.l-a.l);let bars=[];rows('#bStock').forEach(r=>{for(let i=0;i<+r[2];i++)if(+r[1]>0)bars.push({a:[],used:0,L:+r[1],stock:true,name:r[0]||'Rest'})});
+for(let it of items){let best=-1,bestRem=1e99;bars.forEach((b,i)=>{let need=it.l+(b.a.length?k:0),rem=b.L-b.used-need;if(rem>=-1e-9&&rem<bestRem){best=i;bestRem=rem}});if(best<0){bars.push({a:[it],used:it.l,L:L,stock:false,name:'Neue Stange'})}else{let b=bars[best];b.used+=k+it.l;b.a.push(it)}}let usedBars=bars.filter(b=>b.a.length),newCount=usedBars.filter(b=>!b.stock).length,waste=usedBars.reduce((s,b)=>s+b.L-b.used,0),o=barListTable()+`<div class="resultTitle"><h2>Ergebnis V3.1a</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Stange(n) benötigt · ${usedBars.filter(b=>b.stock).length} Reststück(e) genutzt · Rest gesamt: ${waste.toFixed(1)} mm</div>`;usedBars.forEach((b,i)=>{o+=`<b>${b.stock?'Bestand: '+esc(b.name):'Stange '+(usedBars.filter(x=>!x.stock).indexOf(b)+1)}</b> – ${b.L} mm · Rest ${Math.max(0,b.L-b.used).toFixed(1)} mm<div class="bar">`;let x=0;b.a.forEach((a,j)=>{let w=a.l/b.L*100;o+=`<div class="seg" style="left:${x/b.L*100}%;width:${w}%">${a.pos?'P'+esc(a.pos)+' · ':''}${esc(a.n)}<br>${a.l}</div>`;x+=a.l+(j<b.a.length-1?k:0)});o+='</div>'});$('bOut').innerHTML=o;$('bOut').classList.remove('hidden');$('bPrint').classList.remove('hidden')}
+function optPlate(){let rawW=+$('pL').value,rawH=+$('pW').value,k=+$('pK').value,trim=Math.max(0,+$('pTrim').value||0),W=rawW-2*trim,H=rawH-2*trim,rot=$('pRot').checked,items=[];
+if(W<=0||H<=0){alert('Der Besäumschnitt ist größer als die Rohplatte.');return}
+rows('#pRows').forEach(r=>{for(let i=0;i<+r[5];i++)if(+r[2]>0&&+r[3]>0)items.push({pos:r[0]||'',n:r[1]||'Teil',w:+r[2],h:+r[3],g:r[4]||'L'})});
+items.sort((a,b)=>b.w*b.h-a.w*a.h);let sheets=[];
+rows('#pStock').forEach(r=>{for(let i=0;i<+r[3];i++)if(+r[1]>0&&+r[2]>0)sheets.push({W:+r[1],H:+r[2],free:[{x:0,y:0,w:+r[1],h:+r[2]}],used:[],stock:true,name:r[0]||'Rest-/Bestandplatte'})});
+function orientations(it){if(it.g==='L')return [[it.w,it.h,false]];if(it.g==='Q')return [[it.h,it.w,true]];let a=[[it.w,it.h,false]];if(rot&&it.w!==it.h)a.push([it.h,it.w,true]);return a}
+function tryPlace(s,it){let candidates=[];for(let ri=0;ri<s.free.length;ri++){let f=s.free[ri];orientations(it).forEach(v=>{if(v[0]<=f.w&&v[1]<=f.h)candidates.push({ri,w:v[0],h:v[1],turned:v[2],score:(f.w-v[0])*(f.h-v[1])})})}if(!candidates.length)return false;candidates.sort((a,b)=>a.score-b.score);let c=candidates[0],f=s.free.splice(c.ri,1)[0];s.used.push({pos:it.pos,n:it.n,x:f.x,y:f.y,w:c.w,h:c.h,g:it.g,turned:c.turned});let rw=f.w-c.w-k,bh=f.h-c.h-k;if(rw>0)s.free.push({x:f.x+c.w+k,y:f.y,w:rw,h:c.h});if(bh>0)s.free.push({x:f.x,y:f.y+c.h+k,w:f.w,h:bh});return true}
+for(let it of items){let ok=false;for(let s of sheets)if(tryPlace(s,it)){ok=true;break}if(!ok){let s={W,H,free:[{x:0,y:0,w:W,h:H}],used:[],stock:false,name:'Neue Platte'};if(!tryPlace(s,it)){alert('Teil '+it.n+' passt mit der gewählten Maserrichtung nicht auf die Rohplatte.');return}sheets.push(s)}}
+let used=sheets.filter(s=>s.used.length),newCount=used.filter(s=>!s.stock).length,stockCount=used.filter(s=>s.stock).length,totalArea=used.reduce((z,s)=>z+s.W*s.H,0),partArea=items.reduce((z,a)=>z+a.w*a.h,0),util=totalArea?partArea/totalArea*100:0,rr=rows('#pRows'),tb=rr.filter(r=>+r[2]>0&&+r[3]>0&&+r[5]>0).map(r=>`<tr><td>${esc(r[0]||'')}</td><td>${esc(r[1]||'Teil')}</td><td>${esc(r[2])} mm</td><td>${esc(r[3])} mm</td><td>${esc(r[5])}</td><td>${r[4]==='L'?'Längs':r[4]==='Q'?'Quer':'Egal'}</td></tr>`).join(''),o=`<div class="printOnly"><h1>Zuschnitt Optimierer – Platten</h1><div class="printMeta"><b>Bauvorhaben:</b><span>${esc($('bv').value||'—')}</span><b>Rohplatte:</b><span>${rawW} × ${rawH} mm</span><b>Nutzmaß:</b><span>${W} × ${H} mm</span><b>Schnittfuge:</b><span>${k} mm</span><b>Besäumschnitt:</b><span>${trim} mm je Kante</span></div><h3>Maßliste</h3><table class="printTable"><thead><tr><th>Pos.Nr.</th><th>Bezeichnung</th><th>Länge</th><th>Breite</th><th>Stück</th><th>Maserung</th></tr></thead><tbody>${tb}</tbody></table></div><div class="resultTitle"><h2>Ergebnis V3.1a</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Platte(n) benötigt · ${stockCount} Rest-/Bestandplatte(n) genutzt · Flächennutzung ca. ${util.toFixed(1)} %</div><p class="muted">Die Pfeile zeigen die Maserrichtung der Teile. ↔ = entlang Plattenlänge, ↕ = entlang Plattenbreite.</p>`;
+used.forEach((s,i)=>{o+=`<b>${s.stock?'Bestand: '+s.name:'Neue Platte '+(used.filter(x=>!x.stock).indexOf(s)+1)} – ${s.W}×${s.H} mm &nbsp; Maserung Platte ↔</b><div class="sheet" style="width:100%;aspect-ratio:${s.W}/${s.H}">`;s.used.forEach(a=>{let arrow=a.g==='E'?'↔↕':(a.g==='L'?'↔':'↕');o+=`<div class="piece" style="left:${a.x/s.W*100}%;top:${a.y/s.H*100}%;width:${a.w/s.W*100}%;height:${a.h/s.H*100}%"><b>${arrow}</b> ${a.pos?'P'+esc(a.pos)+' · ':''}${a.n}<br>${a.w}×${a.h}</div>`});o+='</div>'});$('pOut').innerHTML=o;$('pOut').classList.remove('hidden');$('pPrint').classList.remove('hidden')}
+
+function printMode(mode){
+  if(mode==='plate'){document.body.dataset.printmode='plate';$('plateMode').classList.remove('hidden');$('barMode').classList.add('hidden')}else{document.body.dataset.printmode='bar';$('barMode').classList.remove('hidden');$('plateMode').classList.add('hidden')}
+  window.print();
+}
+window.addEventListener('afterprint',()=>{delete document.body.dataset.printmode});
+function updateNet(){let L=+$('pL').value||0,W=+$('pW').value||0,t=Math.max(0,+$('pTrim').value||0),nL=L-2*t,nW=W-2*t;$('pNet').textContent=nL>0&&nW>0?'Netto-Nutzmaß: '+nL+' × '+nW+' mm':'Netto-Nutzmaß: ungültig';}
+['pL','pW','pTrim'].forEach(id=>$(id).addEventListener('input',updateNet));updateNet();
+$('tabPlate').onclick=()=>{$('plateMode').classList.remove('hidden');$('barMode').classList.add('hidden');$('tabPlate').classList.add('active');$('tabBar').classList.remove('active')};$('tabBar').onclick=()=>{$('barMode').classList.remove('hidden');$('plateMode').classList.add('hidden');$('tabBar').classList.add('active');$('tabPlate').classList.remove('active')};
+
+function deNumberWord(s){
+  const m={null:0,ein:1,eins:1,eine:1,einen:1,einer:1,zwei:2,drei:3,vier:4,fünf:5,sechs:6,sieben:7,acht:8,neun:9,zehn:10,elf:11,zwölf:12};
+  s=(s||'').toLowerCase().trim(); if(/^\d+(?:[.,]\d+)?$/.test(s)) return Number(s.replace(',','.')); return m[s];
+}
+function cleanSpeech(t){return (t||'').toLowerCase().replace(/×/g,' mal ').replace(/\s+/g,' ').trim()}
+function parsePlateSpeech(text){
+  let t=cleanSpeech(text), grain='L';
+  if(/maserung\s+quer|korn\s+quer|\bquer\b/.test(t)) grain='Q';
+  else if(/maserung\s+egal|korn\s+egal|frei dreh/.test(t)) grain='E';
+  t=t.replace(/,?\s*(maserung|korn)\s+(längs|laengs|quer|egal)/g,'').replace(/,?\s*frei dreh\w*/g,'');
+  let mm=[...t.matchAll(/(\d+(?:[.,]\d+)?)\s*(?:mm|millimeter)?\s*(?:mal|x)\s*(\d+(?:[.,]\d+)?)/g)];
+  if(!mm.length) return {error:'Ich habe Länge × Breite nicht erkannt.'};
+  let a=Number(mm[0][1].replace(',','.')),b=Number(mm[0][2].replace(',','.'));
+  let qty=1, qm=t.match(/(?:^|[, ]+)(\d+|ein|eins|eine|einen|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf)\s*(?:stück|stueck|x\b)/);
+  if(qm){let q=deNumberWord(qm[1]); if(q>0) qty=q}
+  let before=t.slice(0,mm[0].index).replace(/[,:;-]+$/,'').trim();
+  before=before.replace(/^(?:ein|eine|einen|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\d+)\s+/,'').trim();
+  let name=before || 'Teil';
+  return {name,l:a,w:b,q:qty,g:grain};
+}
+function parseBarSpeech(text){
+  let t=cleanSpeech(text), lm=t.match(/(\d+(?:[.,]\d+)?)\s*(?:mm|millimeter)?/); if(!lm)return {error:'Ich habe die Länge nicht erkannt.'};
+  let l=Number(lm[1].replace(',','.')),qty=1,qm=t.match(/(?:^|[, ]+)(\d+|ein|eins|eine|einen|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf)\s*(?:stück|stueck|x\b)/);
+  if(qm){let q=deNumberWord(qm[1]);if(q>0)qty=q}
+  let name=t.slice(0,lm.index).replace(/[,:;-]+$/,'').trim().replace(/^(?:ein|eine|einen|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\d+)\s+/,'').trim() || 'Zuschnitt';
+  return {name,l,q:qty};
+}
+function setupVoice(btnId,msgId,kind){
+  const btn=$(btnId),msg=$(msgId),SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){btn.disabled=true;msg.innerHTML='<span class="voiceError">Spracheingabe wird in diesem Browser nicht unterstützt. Tastatureingabe bleibt verfügbar.</span>';return}
+  let rec=new SR(); rec.lang='de-DE'; rec.interimResults=false; rec.maxAlternatives=1;
+  rec.onstart=()=>{btn.classList.add('listening');btn.textContent='⏹ Zuhören…';msg.textContent='Bitte jetzt sprechen.'};
+  rec.onend=()=>{btn.classList.remove('listening');btn.textContent='🎤 Sprache'};
+  rec.onerror=e=>{msg.innerHTML='<span class="voiceError">Spracherkennung: '+(e.error==='not-allowed'?'Mikrofonzugriff nicht erlaubt.':e.error)+'</span>'};
+  rec.onresult=e=>{let spoken=e.results[0][0].transcript,p=kind==='plate'?parsePlateSpeech(spoken):parseBarSpeech(spoken);if(p.error){msg.innerHTML='<span class="voiceError">„'+spoken+'“ – '+p.error+'</span>';return}if(kind==='plate'){addP(p.name,p.l,p.w,p.q,p.g);let g=p.g==='L'?'längs':p.g==='Q'?'quer':'egal';msg.innerHTML='<span class="voicePreview">Erkannt: '+p.name+' · '+p.l+' × '+p.w+' mm · '+p.q+' Stück · '+g+'</span>'}else{addB(p.name,p.l,p.q);msg.innerHTML='<span class="voicePreview">Erkannt: '+p.name+' · '+p.l+' mm · '+p.q+' Stück</span>'}};
+  btn.addEventListener('click',()=>{try{rec.start()}catch(e){}});
+}
+setupVoice('voicePlate','voicePlateMsg','plate'); setupVoice('voiceBar','voiceBarMsg','bar');
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
+</script></body></html>
