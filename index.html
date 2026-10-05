@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Zuschnitt Optimierer V3.9</title>
+<title>Zuschnitt Optimierer V3.10</title>
 <meta name="theme-color" content="#17202a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Zuschnitt"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17202a;background:#eef1f4}*{box-sizing:border-box}body{margin:0}.top{background:#17202a;color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:3}.top h1{font-size:22px;margin:0 0 12px}.tabs{display:flex;gap:8px}.tabs button{flex:1;border:0;border-radius:10px;padding:11px;font-weight:700;background:#34495e;color:#fff}.tabs button.active{background:#fff;color:#17202a}.tabIcon{display:inline-flex;vertical-align:middle;margin-right:7px}.tabIcon svg{width:25px;height:25px;display:block}.wrap{max-width:900px;margin:auto;padding:14px}.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px #0001}.card h2{font-size:17px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.grid3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}label{font-size:12px;font-weight:700;color:#566573}input,select{width:100%;font-size:16px;padding:10px;border:1px solid #ccd1d1;border-radius:9px;margin-top:4px;background:#fff}button{cursor:pointer}.primary{width:100%;border:0;border-radius:11px;background:#17202a;color:#fff;font-weight:800;padding:13px;font-size:16px}.secondary{border:1px solid #abb2b9;background:#fff;border-radius:9px;padding:9px 12px}.danger{border:0;background:#f5b7b1;border-radius:8px;padding:8px}.row{display:grid;grid-template-columns:.48fr 1.45fr .9fr .9fr .9fr .55fr auto;gap:6px;align-items:end;margin:7px 0}.row input,.row select{font-size:14px;padding:8px}.summary{font-weight:700;line-height:1.55}.sheet{background:#fdfefe;border:2px solid #566573;position:relative;margin:12px 0;overflow:hidden;min-height:100px}.piece{position:absolute;border:1px solid #17202a;background:#d6eaf8;overflow:hidden;font-size:10px;padding:2px}.bar{height:54px;border:2px solid #566573;position:relative;background:#fdfefe;margin:10px 0}.seg{height:100%;position:absolute;top:0;border-right:2px solid #fff;background:#d6eaf8;font-size:10px;overflow:hidden;padding:4px}.muted{color:#7b7d7d;font-size:13px}.hidden{display:none}@media(max-width:650px){
@@ -164,7 +164,7 @@ body{background:linear-gradient(180deg,#edf5fb 0,#f6f7f8 260px);color:var(--ink)
 }
 </style>
 </head>
-<body><div class="top"><h1><svg class="brandIcon" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="10" width="36" height="13" rx="2" fill="#d69b55"/><rect x="9" y="24" width="36" height="13" rx="2" fill="#e7b977"/><circle cx="39" cy="38" r="14" fill="#dfe6ec" stroke="#52616d" stroke-width="3"/><path d="M39 19v7M39 50v7M20 38h7M51 38h7M26 25l5 5M47 47l5 5M52 25l-5 5M31 47l-5 5" stroke="#52616d" stroke-width="3"/><circle cx="39" cy="38" r="4" fill="#52616d"/><path d="M46 48h14v8H46z" fill="#f2a51a"/><path d="M48 50h10" stroke="#fff" stroke-width="2"/></svg><span>Zuschnitt Optimierer V3.9</span></h1><div class="tabs"><button id="tabPlate" class="active"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="21" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v21M21 5v21M3 15h26" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M25 24l4 4M28 23l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Platten</button><button id="tabBar"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 11h26v10H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 16h18M9 13v6M23 13v6" stroke="currentColor" stroke-width="1.6"/><circle cx="27" cy="16" r="2" fill="currentColor"/></svg></span>LED / Schienen</button></div></div>
+<body><div class="top"><h1><svg class="brandIcon" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="10" width="36" height="13" rx="2" fill="#d69b55"/><rect x="9" y="24" width="36" height="13" rx="2" fill="#e7b977"/><circle cx="39" cy="38" r="14" fill="#dfe6ec" stroke="#52616d" stroke-width="3"/><path d="M39 19v7M39 50v7M20 38h7M51 38h7M26 25l5 5M47 47l5 5M52 25l-5 5M31 47l-5 5" stroke="#52616d" stroke-width="3"/><circle cx="39" cy="38" r="4" fill="#52616d"/><path d="M46 48h14v8H46z" fill="#f2a51a"/><path d="M48 50h10" stroke="#fff" stroke-width="2"/></svg><span>Zuschnitt Optimierer V3.10</span></h1><div class="tabs"><button id="tabPlate" class="active"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="21" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5v21M21 5v21M3 15h26" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M25 24l4 4M28 23l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Platten</button><button id="tabBar"><span class="tabIcon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 11h26v10H3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 16h18M9 13v6M23 13v6" stroke="currentColor" stroke-width="1.6"/><circle cx="27" cy="16" r="2" fill="currentColor"/></svg></span>LED / Schienen</button></div></div>
 <div class="wrap">
 <div class="card bvCard"><div class="bvField"><label for="bv">Bauvorhaben (BV)</label><input id="bv" type="text" placeholder="z. B. BV Küche Müller / 2026-014" autocomplete="off"></div></div>
 <section id="plateMode">
@@ -190,7 +190,7 @@ function rows(sel){return [...document.querySelectorAll(sel+' .row')].map(r=>[..
 function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function barListTable(){let rr=rows('#bRows'),body=rr.filter(r=>+r[3]>0&&+r[1]>0).map(r=>`<tr><td>${esc(r[0]||'')}</td><td>${esc(r[2]||'Zuschnitt')}</td><td>${esc(r[3])} mm</td><td>${esc(r[1])}</td></tr>`).join('');return `<div class="printOnly"><h1>Zuschnitt Optimierer – LED / Schienen</h1><div class="printMeta"><b>Bauvorhaben:</b><span>${esc($('bv').value||'—')}</span><b>Stangenlänge:</b><span>${esc($('bL').value)} mm</span><b>Schnittfuge:</b><span>${esc($('bK').value)} mm</span></div><h3>Maßliste</h3><table class="printTable"><thead><tr><th>Pos.Nr.</th><th>Bezeichnung</th><th>Länge</th><th>Stück</th></tr></thead><tbody>${body}</tbody></table></div>`}
 function optBar(){let L=+$('bL').value,k=+$('bK').value,items=[];rows('#bRows').forEach(r=>{for(let i=0;i<+r[1];i++)if(+r[3]>0)items.push({pos:r[0]||'',n:r[2]||'Teil',l:+r[3]})});items.sort((a,b)=>b.l-a.l);let bars=[];rows('#bStock').forEach(r=>{for(let i=0;i<+r[2];i++)if(+r[1]>0)bars.push({a:[],used:0,L:+r[1],stock:true,name:r[0]||'Rest'})});
-for(let it of items){let best=-1,bestRem=1e99;bars.forEach((b,i)=>{let need=it.l+(b.a.length?k:0),rem=b.L-b.used-need;if(rem>=-1e-9&&rem<bestRem){best=i;bestRem=rem}});if(best<0){bars.push({a:[it],used:it.l,L:L,stock:false,name:'Neue Stange'})}else{let b=bars[best];b.used+=k+it.l;b.a.push(it)}}let usedBars=bars.filter(b=>b.a.length),newCount=usedBars.filter(b=>!b.stock).length,waste=usedBars.reduce((s,b)=>s+b.L-b.used,0),o=barListTable()+`<div class="resultTitle"><h2>Ergebnis V3.9</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Stange(n) benötigt · ${usedBars.filter(b=>b.stock).length} Reststück(e) genutzt · Rest gesamt: ${waste.toFixed(1)} mm</div>`;usedBars.forEach((b,i)=>{o+=`<b>${b.stock?'Bestand: '+esc(b.name):'Stange '+(usedBars.filter(x=>!x.stock).indexOf(b)+1)}</b> – ${b.L} mm · Rest ${Math.max(0,b.L-b.used).toFixed(1)} mm<div class="bar">`;let x=0;b.a.forEach((a,j)=>{let w=a.l/b.L*100;o+=`<div class="seg" style="left:${x/b.L*100}%;width:${w}%">${a.pos?'P'+esc(a.pos)+' · ':''}${esc(a.n)}<br>${a.l}</div>`;x+=a.l+(j<b.a.length-1?k:0)});o+='</div>'});$('bOut').innerHTML=o;$('bOut').classList.remove('hidden');$('bPrint').classList.remove('hidden')}
+for(let it of items){let best=-1,bestRem=1e99;bars.forEach((b,i)=>{let need=it.l+(b.a.length?k:0),rem=b.L-b.used-need;if(rem>=-1e-9&&rem<bestRem){best=i;bestRem=rem}});if(best<0){bars.push({a:[it],used:it.l,L:L,stock:false,name:'Neue Stange'})}else{let b=bars[best];b.used+=k+it.l;b.a.push(it)}}let usedBars=bars.filter(b=>b.a.length),newCount=usedBars.filter(b=>!b.stock).length,waste=usedBars.reduce((s,b)=>s+b.L-b.used,0),o=barListTable()+`<div class="resultTitle"><h2>Ergebnis V3.10</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Stange(n) benötigt · ${usedBars.filter(b=>b.stock).length} Reststück(e) genutzt · Rest gesamt: ${waste.toFixed(1)} mm</div>`;usedBars.forEach((b,i)=>{o+=`<b>${b.stock?'Bestand: '+esc(b.name):'Stange '+(usedBars.filter(x=>!x.stock).indexOf(b)+1)}</b> – ${b.L} mm · Rest ${Math.max(0,b.L-b.used).toFixed(1)} mm<div class="bar">`;let x=0;b.a.forEach((a,j)=>{let w=a.l/b.L*100;o+=`<div class="seg" style="left:${x/b.L*100}%;width:${w}%">${a.pos?'P'+esc(a.pos)+' · ':''}${esc(a.n)}<br>${a.l}</div>`;x+=a.l+(j<b.a.length-1?k:0)});o+='</div>'});$('bOut').innerHTML=o;$('bOut').classList.remove('hidden');$('bPrint').classList.remove('hidden')}
 function optPlate(){let rawW=+$('pL').value,rawH=+$('pW').value,k=+$('pK').value,trim=Math.max(0,+$('pTrim').value||0),W=rawW-2*trim,H=rawH-2*trim,rot=$('pRot').checked,items=[];
 if(W<=0||H<=0){alert('Der Besäumschnitt ist größer als die Rohplatte.');return}
 rows('#pRows').forEach(r=>{for(let i=0;i<+r[1];i++)if(+r[3]>0&&+r[4]>0)items.push({pos:r[0]||'',n:r[2]||'Teil',w:+r[3],h:+r[4],g:r[5]||'L'})});
@@ -199,10 +199,10 @@ rows('#pStock').forEach(r=>{for(let i=0;i<+r[3];i++)if(+r[1]>0&&+r[2]>0)sheets.p
 function orientations(it){if(it.g==='L')return [[it.w,it.h,false]];if(it.g==='Q')return [[it.h,it.w,true]];let a=[[it.w,it.h,false]];if(rot&&it.w!==it.h)a.push([it.h,it.w,true]);return a}
 function tryPlace(s,it){let candidates=[];for(let ri=0;ri<s.free.length;ri++){let f=s.free[ri];orientations(it).forEach(v=>{if(v[0]<=f.w&&v[1]<=f.h)candidates.push({ri,w:v[0],h:v[1],turned:v[2],score:(f.w-v[0])*(f.h-v[1])})})}if(!candidates.length)return false;candidates.sort((a,b)=>a.score-b.score);let c=candidates[0],f=s.free.splice(c.ri,1)[0];s.used.push({pos:it.pos,n:it.n,x:f.x,y:f.y,w:c.w,h:c.h,g:it.g,turned:c.turned});let rw=f.w-c.w-k,bh=f.h-c.h-k;if(rw>0)s.free.push({x:f.x+c.w+k,y:f.y,w:rw,h:c.h});if(bh>0)s.free.push({x:f.x,y:f.y+c.h+k,w:f.w,h:bh});return true}
 for(let it of items){let ok=false;for(let s of sheets)if(tryPlace(s,it)){ok=true;break}if(!ok){let s={W,H,free:[{x:0,y:0,w:W,h:H}],used:[],stock:false,name:'Neue Platte'};if(!tryPlace(s,it)){alert('Teil '+it.n+' passt mit der gewählten Maserrichtung nicht auf die Rohplatte.');return}sheets.push(s)}}
-let used=sheets.filter(s=>s.used.length),newCount=used.filter(s=>!s.stock).length,stockCount=used.filter(s=>s.stock).length,totalArea=used.reduce((z,s)=>z+s.W*s.H,0),partArea=items.reduce((z,a)=>z+a.w*a.h,0),util=totalArea?partArea/totalArea*100:0,rr=rows('#pRows'),tb=rr.filter(r=>+r[3]>0&&+r[4]>0&&+r[1]>0).map(r=>`<tr><td>${esc(r[0]||'')}</td><td>${esc(r[2]||'Teil')}</td><td>${esc(r[3])} mm</td><td>${esc(r[4])} mm</td><td>${esc(r[1])}</td><td>${r[5]==='L'?'↔ Längs':r[5]==='Q'?'↕ Quer':'↔↕ Egal'}</td></tr>`).join(''),o=`<div class="printOnly"><h1>Zuschnitt Optimierer – Platten</h1><div class="printMeta"><b>Bauvorhaben:</b><span>${esc($('bv').value||'—')}</span><b>Rohplatte:</b><span>${rawW} × ${rawH} mm</span><b>Nutzmaß:</b><span>${W} × ${H} mm</span><b>Schnittfuge:</b><span>${k} mm</span><b>Besäumschnitt:</b><span>${trim} mm je Kante</span></div><h3>Maßliste</h3><table class="printTable"><thead><tr><th>Pos.Nr.</th><th>Bezeichnung</th><th>Länge</th><th>Breite</th><th>Stück</th><th>Maserung</th></tr></thead><tbody>${tb}</tbody></table></div><div class="resultTitle"><h2>Ergebnis V3.9</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Platte(n) benötigt · ${stockCount} Rest-/Bestandplatte(n) genutzt · Flächennutzung ca. ${util.toFixed(1)} %</div><p class="muted">Die Pfeile zeigen die Maserrichtung der Teile. ↔ = entlang Plattenlänge, ↕ = entlang Plattenbreite.</p>`;
+let used=sheets.filter(s=>s.used.length),newCount=used.filter(s=>!s.stock).length,stockCount=used.filter(s=>s.stock).length,totalArea=used.reduce((z,s)=>z+s.W*s.H,0),partArea=items.reduce((z,a)=>z+a.w*a.h,0),util=totalArea?partArea/totalArea*100:0,rr=rows('#pRows'),tb=rr.filter(r=>+r[3]>0&&+r[4]>0&&+r[1]>0).map(r=>`<tr><td>${esc(r[0]||'')}</td><td>${esc(r[2]||'Teil')}</td><td>${esc(r[3])} mm</td><td>${esc(r[4])} mm</td><td>${esc(r[1])}</td><td>${r[5]==='L'?'↔ Längs':r[5]==='Q'?'↕ Quer':'↔↕ Egal'}</td></tr>`).join(''),o=`<div class="printOnly"><h1>Zuschnitt Optimierer – Platten</h1><div class="printMeta"><b>Bauvorhaben:</b><span>${esc($('bv').value||'—')}</span><b>Rohplatte:</b><span>${rawW} × ${rawH} mm</span><b>Nutzmaß:</b><span>${W} × ${H} mm</span><b>Schnittfuge:</b><span>${k} mm</span><b>Besäumschnitt:</b><span>${trim} mm je Kante</span></div><h3>Maßliste</h3><table class="printTable"><thead><tr><th>Pos.Nr.</th><th>Bezeichnung</th><th>Länge</th><th>Breite</th><th>Stück</th><th>Maserung</th></tr></thead><tbody>${tb}</tbody></table></div><div class="resultTitle"><h2>Ergebnis V3.10</h2><small>${esc($('bv').value||'ohne BV')}</small></div><div class="summary">${newCount} neue Platte(n) benötigt · ${stockCount} Rest-/Bestandplatte(n) genutzt · Flächennutzung ca. ${util.toFixed(1)} %</div><p class="muted">Die Pfeile zeigen die Maserrichtung der Teile. ↔ = entlang Plattenlänge, ↕ = entlang Plattenbreite.</p>`;
 used.forEach((s,i)=>{o+=`<b>${s.stock?'Bestand: '+s.name:'Neue Platte '+(used.filter(x=>!x.stock).indexOf(s)+1)} – ${s.W}×${s.H} mm &nbsp; Maserung Platte ↔</b><div class="sheet" style="width:100%;aspect-ratio:${s.W}/${s.H}">`;s.used.forEach(a=>{let arrow=a.g==='E'?'↔↕':(a.g==='L'?'↔':'↕');o+=`<div class="piece" style="left:${a.x/s.W*100}%;top:${a.y/s.H*100}%;width:${a.w/s.W*100}%;height:${a.h/s.H*100}%"><b>${arrow}</b> ${a.pos?'P'+esc(a.pos)+' · ':''}${a.n}<br>${a.w}×${a.h}</div>`});o+='</div>'});$('pOut').innerHTML=o;$('pOut').classList.remove('hidden');$('pPrint').classList.remove('hidden')}
 
-function printMode(mode){
+async function printMode(mode){
   if(mode==='plate'){document.body.dataset.printmode='plate';$('plateMode').classList.remove('hidden');$('barMode').classList.add('hidden')}
   else{document.body.dataset.printmode='bar';$('barMode').classList.remove('hidden');$('plateMode').classList.add('hidden')}
 
@@ -210,16 +210,11 @@ function printMode(mode){
               (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
   if(!isiOS){ window.print(); return; }
 
-  const result=mode==='plate' ? $('pOut') : $('bOut');
-  const panel=$('iosPrintPanel');
-  panel.innerHTML =
-    '<div class="iosTools">'+
-      '<button class="printBtn" type="button" onclick="iosSharePDF()">📄 PDF erstellen / teilen</button>'+
-      '<button class="backBtn" type="button" onclick="closeIOSPrint()">← Zurück</button>'+
-    '</div>'+
-    result.outerHTML;
-  document.body.classList.add('iosPrintMode');
-  window.scrollTo(0,0);
+  try{
+    await createDirectPDF(mode);
+  }catch(e){
+    alert('PDF konnte nicht erstellt werden: '+(e&&e.message?e.message:e));
+  }
 }
 window.addEventListener('afterprint',()=>{delete document.body.dataset.printmode});
 function updateNet(){let L=+$('pL').value||0,W=+$('pW').value||0,t=Math.max(0,+$('pTrim').value||0),nL=L-2*t,nW=W-2*t;$('pNet').textContent=nL>0&&nW>0?'Netto-Nutzmaß: '+nL+' × '+nW+' mm':'Netto-Nutzmaß: ungültig';}
@@ -287,69 +282,127 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigat
 </style>
 <div id="iosPrintPanel"></div>
 <script>
-async function iosSharePDF(){
-  const panel=$('iosPrintPanel');
-  const tools=panel.querySelector('.iosTools');
-  if(tools) tools.style.display='none';
-
-  try{
-    // jsPDF is loaded only when needed on iPhone.
-    if(!window.jspdf){
-      await loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js');
-    }
-    if(!window.html2canvas){
-      await loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js');
-    }
-
-    const canvas=await html2canvas(panel,{scale:2,useCORS:true,backgroundColor:'#ffffff',
-      windowWidth:panel.scrollWidth,windowHeight:panel.scrollHeight});
-    const {jsPDF}=window.jspdf;
-    const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
-    const pageW=210,pageH=297,margin=8,usableW=pageW-2*margin,usableH=pageH-2*margin;
-    const imgW=usableW;
-    const imgH=canvas.height*imgW/canvas.width;
-    const img=canvas.toDataURL('image/jpeg',0.92);
-
-    let y=margin, remaining=imgH;
-    pdf.addImage(img,'JPEG',margin,y,imgW,imgH);
-    remaining-=usableH;
-    while(remaining>0){
-      pdf.addPage();
-      y=margin-(imgH-remaining);
-      pdf.addImage(img,'JPEG',margin,y,imgW,imgH);
-      remaining-=usableH;
-    }
-
-    const bv=($('bv').value||'Zuschnitt').replace(/[^\wäöüÄÖÜß-]+/g,'_');
-    const file=pdf.output('blob');
-    const pdfFile=new File([file], 'Zuschnitt_'+bv+'.pdf', {type:'application/pdf'});
-
-    if(navigator.share && navigator.canShare && navigator.canShare({files:[pdfFile]})){
-      await navigator.share({files:[pdfFile],title:'Zuschnitt Optimierer'});
-    }else{
-      const url=URL.createObjectURL(file);
-      const a=document.createElement('a'); a.href=url; a.download=pdfFile.name;
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),30000);
-    }
-  }catch(e){
-    alert('PDF konnte nicht erstellt werden: '+(e && e.message ? e.message : e));
-  }finally{
-    if(tools) tools.style.display='flex';
-  }
-}
 function loadScript(src){
   return new Promise((resolve,reject)=>{
-    const old=[...document.scripts].find(x=>x.src===src);
-    if(old){resolve();return}
-    const x=document.createElement('script');x.src=src;x.onload=resolve;x.onerror=()=>reject(new Error('PDF-Baustein konnte nicht geladen werden. Internetverbindung prüfen.'));document.head.appendChild(x);
+    if(window.jspdf){resolve();return}
+    const x=document.createElement('script');x.src=src;x.onload=resolve;
+    x.onerror=()=>reject(new Error('PDF-Baustein konnte nicht geladen werden.'));
+    document.head.appendChild(x);
   });
 }
-function closeIOSPrint(){
-  document.body.classList.remove('iosPrintMode');
-  $('iosPrintPanel').innerHTML='';
-  delete document.body.dataset.printmode;
-  window.scrollTo(0,0);
+function pdfSafe(v){return String(v??'').replace(/[^\x20-\x7EäöüÄÖÜß]/g,' ')}
+function pdfFilename(){
+  return 'Zuschnitt_'+(($('bv').value||'BV').replace(/[^\wäöüÄÖÜß-]+/g,'_'))+'.pdf';
+}
+async function sharePDFBlob(blob,name){
+  const file=new File([blob],name,{type:'application/pdf'});
+  if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+    await navigator.share({files:[file],title:'Zuschnitt Optimierer'});
+  }else{
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),30000);
+  }
+}
+async function createDirectPDF(mode){
+  if(!window.jspdf) await loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js');
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+  const PW=210,PH=297,M=10,usable=PW-2*M;
+  let y=M;
+
+  function pageCheck(h=8){if(y+h>PH-M){pdf.addPage();y=M}}
+  function line(txt,size=10,bold=false){
+    pageCheck(size*.5+4);pdf.setFont('helvetica',bold?'bold':'normal');pdf.setFontSize(size);
+    pdf.text(pdfSafe(txt),M,y);y+=size*.42+3;
+  }
+  function hline(){pageCheck(3);pdf.setDrawColor(170);pdf.line(M,y,PW-M,y);y+=4}
+  function tableRow(cols,widths,bold=false){
+    pageCheck(7);pdf.setFont('helvetica',bold?'bold':'normal');pdf.setFontSize(8);
+    let x=M;
+    cols.forEach((c,i)=>{pdf.rect(x,y-4,widths[i],6);pdf.text(pdfSafe(c),x+1,y);x+=widths[i]});
+    y+=6;
+  }
+
+  line('Zuschnitt Optimierer V3.10',16,true);
+  line('Bauvorhaben: '+($('bv').value||'-'),11,true);hline();
+
+  if(mode==='plate'){
+    const rawW=+$('pL').value,rawH=+$('pW').value,k=+$('pK').value,trim=Math.max(0,+$('pTrim').value||0);
+    const W=rawW-2*trim,H=rawH-2*trim,rot=$('pRot').checked;
+    line('PLATTENZUSCHNITT',12,true);
+    line('Rohplatte: '+rawW+' x '+rawH+' mm   Nutzmass: '+W+' x '+H+' mm');
+    line('Schnittfuge: '+k+' mm   Besaeumschnitt: '+trim+' mm je Kante');
+    y+=2;
+    const widths=[18,64,30,30,18,30];
+    tableRow(['Pos.','Bezeichnung','Laenge','Breite','Stk.','Maserung'],widths,true);
+    const rr=rows('#pRows');
+    rr.filter(r=>+r[3]>0&&+r[4]>0&&+r[1]>0).forEach(r=>{
+      tableRow([r[0]||'',r[2]||'Teil',r[3]+' mm',r[4]+' mm',r[1],
+        r[5]==='L'?'Laengs':r[5]==='Q'?'Quer':'Egal'],widths);
+    });
+    y+=5;
+
+    // Re-run the same packing logic so the PDF is independent of DOM screenshots.
+    let items=[];
+    rr.forEach(r=>{for(let i=0;i<+r[1];i++)if(+r[3]>0&&+r[4]>0)
+      items.push({pos:r[0]||'',n:r[2]||'Teil',w:+r[3],h:+r[4],g:r[5]||'L'})});
+    items.sort((a,b)=>b.w*b.h-a.w*a.h);
+    let sheets=[];
+    rows('#pStock').forEach(r=>{for(let i=0;i<+r[3];i++)if(+r[1]>0&&+r[2]>0)
+      sheets.push({W:+r[1],H:+r[2],free:[{x:0,y:0,w:+r[1],h:+r[2]}],used:[],stock:true,name:r[0]||'Bestand'})});
+    function ors(it){if(it.g==='L')return [[it.w,it.h,false]];if(it.g==='Q')return [[it.h,it.w,true]];
+      let a=[[it.w,it.h,false]];if(rot&&it.w!==it.h)a.push([it.h,it.w,true]);return a}
+    function place(sh,it){
+      let cs=[];sh.free.forEach((f,ri)=>ors(it).forEach(v=>{if(v[0]<=f.w&&v[1]<=f.h)cs.push({ri,w:v[0],h:v[1],score:(f.w-v[0])*(f.h-v[1])})}));
+      if(!cs.length)return false;cs.sort((a,b)=>a.score-b.score);let c=cs[0],f=sh.free.splice(c.ri,1)[0];
+      sh.used.push({pos:it.pos,n:it.n,x:f.x,y:f.y,w:c.w,h:c.h,g:it.g});
+      let rw=f.w-c.w-k,bh=f.h-c.h-k;if(rw>0)sh.free.push({x:f.x+c.w+k,y:f.y,w:rw,h:c.h});
+      if(bh>0)sh.free.push({x:f.x,y:f.y+c.h+k,w:f.w,h:bh});return true;
+    }
+    items.forEach(it=>{let ok=false;for(const sh of sheets)if(place(sh,it)){ok=true;break}
+      if(!ok){let sh={W,H,free:[{x:0,y:0,w:W,h:H}],used:[],stock:false,name:'Neue Platte'};if(place(sh,it))sheets.push(sh)}});
+    const used=sheets.filter(sh=>sh.used.length);
+    line('Ergebnis: '+used.filter(sh=>!sh.stock).length+' neue Platte(n), '+used.filter(sh=>sh.stock).length+' Bestandplatte(n)',10,true);
+
+    used.forEach((sh,idx)=>{
+      const drawW=usable,drawH=Math.min(125,drawW*sh.H/sh.W);
+      pageCheck(drawH+18);
+      line((sh.stock?'Bestand: '+sh.name:'Neue Platte '+(used.filter(x=>!x.stock).indexOf(sh)+1))+' - '+sh.W+' x '+sh.H+' mm',9,true);
+      const x0=M,y0=y;
+      pdf.setDrawColor(40);pdf.setLineWidth(.35);pdf.rect(x0,y0,drawW,drawH);
+      sh.used.forEach(a=>{
+        const x=x0+a.x/sh.W*drawW, yy=y0+a.y/sh.H*drawH, w=a.w/sh.W*drawW, h=a.h/sh.H*drawH;
+        pdf.setFillColor(220,238,255);pdf.setDrawColor(70);pdf.rect(x,yy,w,h,'FD');
+        pdf.setFontSize(6.5);pdf.setFont('helvetica','bold');
+        const label=(a.g==='L'?'<-> ':a.g==='Q'?'^v ':'<->^v ')+(a.pos?'P'+a.pos+' ':'')+a.n;
+        pdf.text(pdfSafe(label),x+1,yy+3,{maxWidth:Math.max(3,w-2)});
+        if(h>7)pdf.text(pdfSafe(a.w+' x '+a.h),x+1,yy+6,{maxWidth:Math.max(3,w-2)});
+      });
+      y+=drawH+7;
+    });
+  }else{
+    const L=+$('bL').value,k=+$('bK').value;
+    line('LED / SCHIENEN',12,true);
+    line('Stangenlaenge: '+L+' mm   Schnittfuge: '+k+' mm');
+    const widths=[20,90,45,25];
+    tableRow(['Pos.','Bezeichnung','Laenge','Stk.'],widths,true);
+    const rr=rows('#bRows');
+    rr.filter(r=>+r[3]>0&&+r[1]>0).forEach(r=>tableRow([r[0]||'',r[2]||'Zuschnitt',r[3]+' mm',r[1]],widths));
+    y+=5;
+    let items=[];rr.forEach(r=>{for(let i=0;i<+r[1];i++)if(+r[3]>0)items.push({pos:r[0]||'',n:r[2]||'Teil',l:+r[3]})});
+    items.sort((a,b)=>b.l-a.l);let bars=[];
+    rows('#bStock').forEach(r=>{for(let i=0;i<+r[2];i++)if(+r[1]>0)bars.push({a:[],used:0,L:+r[1],stock:true,name:r[0]||'Rest'})});
+    items.forEach(it=>{let best=-1,rem=1e99;bars.forEach((b,i)=>{let need=it.l+(b.a.length?k:0),r=b.L-b.used-need;if(r>=-1e-9&&r<rem){best=i;rem=r}});
+      if(best<0)bars.push({a:[it],used:it.l,L,stock:false,name:'Neue Stange'});else{bars[best].used+=k+it.l;bars[best].a.push(it)}});
+    bars.filter(b=>b.a.length).forEach((b,i)=>{
+      pageCheck(22);line((b.stock?'Bestand: '+b.name:'Stange '+(i+1))+' - '+b.L+' mm',9,true);
+      const x0=M,w=usable,h=12;pdf.rect(x0,y,w,h);let x=x0;
+      b.a.forEach(a=>{let sw=a.l/b.L*w;pdf.setFillColor(220,238,255);pdf.rect(x,y,sw,h,'FD');pdf.setFontSize(6.5);pdf.text(pdfSafe((a.pos?'P'+a.pos+' ':'')+a.n),x+1,y+4,{maxWidth:Math.max(3,sw-2)});x+=sw+k/b.L*w});
+      y+=17;
+    });
+  }
+  await sharePDFBlob(pdf.output('blob'),pdfFilename());
 }
 </script>
 </body></html>
